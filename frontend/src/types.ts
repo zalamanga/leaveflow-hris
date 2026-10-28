@@ -1,0 +1,10 @@
+export type Role = 'employee' | 'manager';
+export type Status = 'pending' | 'approved' | 'rejected' | 'withdrawn' | 'cancelled';
+export type Auth = { user: { id: number; name: string; email: string; role: Role; manager_id: number | null }; csrf_token: string; demo_mode: boolean };
+export type Context = { today: string; year: number; office_timezone: string };
+export type Balance = { year: number; granted: number; approved: number; pending: number; available: number; version: number | null; configured: boolean };
+export type Summary = { id: number; key: string; employee: { id: number; name: string }; year: number; start_date: string; end_date: string; units: number; status: Status; version: number; created_at: string; updated_at: string };
+export type Detail = Summary & { reason: string; working_days: string[]; review_reason: string | null; events: { id: number; actor: string; kind: string; note: string; created_at: string }[] };
+export type Queue = { items: Summary[]; total: number; page: number; page_size: number; counts: Record<Status, number> };
+export type Estimate = { units: number; working_days: string[]; excluded_days: { date: string; reason: string }[] };
+export type Calendar = { year: number; month: number; items: { id: number; employee: { id: number; name: string }; start_date: string; end_date: string; units: number; working_days: string[] }[] };
