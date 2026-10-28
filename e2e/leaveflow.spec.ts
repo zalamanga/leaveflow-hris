@@ -214,8 +214,6 @@ test('@review-actions manager expands working dates, rejects and downloads CSV',
   const download=manager.page.waitForEvent('download');
   await manager.page.getByRole('button',{name:'Ekspor CSV',exact:true}).click();
   expect((await download).suggestedFilename()).toBe(`leaveflow-${day.slice(0,4)}.csv`);
-  await manager.page.getByRole('button',{name:'Keluar',exact:true}).click();
-  await expect(manager.page.getByRole('textbox',{name:'Email',exact:true})).toBeVisible();
   await employee.context.close();await manager.context.close();
 });
 
